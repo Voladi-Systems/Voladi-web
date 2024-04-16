@@ -1,0 +1,15 @@
+{% load menus %}
+
+<ul class="bg-white shadow py-1">
+  {% for item in menu_items %}
+  <li class="relative group/level-3 hover:bg-gray-100">
+    <a
+      href="{{ item.href }}"
+      class="px-3 py-1 block"
+      {% if item.open_new_tab %}target="_blank"{% endif %}
+    >
+      {{ item.text }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

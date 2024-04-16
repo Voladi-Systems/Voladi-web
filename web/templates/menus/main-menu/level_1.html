@@ -1,0 +1,65 @@
+{% load menus %}
+<div class="flat-menu level-1 {{ menu_handle }} {% if menu_heading %}with_heading{% else %}no_heading{% endif %} flex h-full">
+  {% if menu_items %}
+  <ul class="md:flex md:flex-grow md:items-center w-full md:w-auto opacity-90 list-none border-b border-gray-600 md:border-none" style="list-style: none;">
+    {% for item in menu_items %}
+    <li class="group/level-1 relative md:h-full w-full md:w-auto">
+      <a
+        href="{{ item.href }}"
+        class="h-12 md:h-full overflow-hidden flex flex-grow items-stretch md:block font-medium h-full hover:opacity-100 {% if request_context.request.path == item.href %}opacity-100{% else %}opacity-90{% endif %}{% if item.has_children_in_menu %} justify-between{% endif %}"
+        {% if item.open_new_tab %}target="_blank"{% endif %}
+      >
+        <span class="flex items-center text-end px-4 py-6 md:px-3 h-full w-full md:w-auto">
+          {{ item.text }}
+        </span>
+        {% if item.has_children_in_menu %}
+        <span
+          class="md:hidden px-4 py-6 hover:bg-primary-dark hover:text-white w-16 flex items-center justify-center"
+          data-menu-level-toggle
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="transform transition-all"
+          >
+            <title>chevron-down</title>
+            <path
+              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        {% endif %}
+      </a>
+      {% if item.has_children_in_menu %}
+      <div
+        class="h-0 md:h-auto scale-y-0 origin-top md:origin-top-left delay-5 overflow-hidden md:block md:absolute duration-150 md:scale-0 md:group-hover/level-1:scale-100 duration-150 sub-menu transform transition-all"
+        data-submenu
+      >
+        {% sub_menu item.page menu_handle %}
+      </div>
+      {% endif %}
+      <div class="bg-transparent md:bg-primary h-0.5 absolute top-0 w-0 group-hover/level-1:w-full transition-all duration-150"></div>
+    </li>
+    {% endfor %}
+  </ul>
+  <script>
+    (function() {
+      const toggleBtns = document.querySelectorAll('[data-menu-level-toggle]');
+      toggleBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const parent = e.target.closest('li');
+          const subMenu = parent.querySelector('[data-submenu]');
+          if (subMenu) {
+            const chevron = btn.querySelector('svg');
+            chevron.classList.toggle('rotate-180');
+            subMenu.classList.toggle('scale-y-0');
+            subMenu.classList.toggle('h-0');
+          }
+        });
+      });
+    })();
+  </script>
+  {% endif %}
+</div>

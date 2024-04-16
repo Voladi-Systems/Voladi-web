@@ -1,0 +1,5 @@
+staticfiles
+media
+**/node_modules
+**/css/dist/styles.css
+gcp-voladi-dev20210601-e5a3f5170f66.json

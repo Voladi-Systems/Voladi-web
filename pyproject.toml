@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "voladi"
+version = "0.1.0"
+description = ""
+authors = ["Santiago Poveda <spoveda@voladi.com>"]
+
+[tool.poetry.dependencies]
+deepl = "^1.13.0"
+Django = "^4.1.4"
+django-allauth = "^0.51.0"
+django-countries = "^7.3.2"
+django-jazzmin = "^2.6.0"
+django-redis = "^5.2.0"
+django-tailwind = "^3.4.0"
+django-tinymce = "^3.5.0"
+djangorestframework = "^3.13.1"
+pandas = "^1.5.2"
+psycopg2-binary = "^2.9.5"
+python = "^3.10.5"
+python-dotenv = "^0.21.0"
+requests = "^2.28.2"
+uWSGI = "^2.0.21"
+wagtail = "5.2"
+wagtail-cache = "^2.2.0"
+wagtail-metadata = "^4.0.3"
+wagtailmenus = "^3.1.3"
+XlsxWriter = "^3.0.3"
+django-storages = {extras = ["google"], version = "^1.13.2"}
+django-dbbackup = "^4.0.2"
+wagtail-modeladmin = "^1.0.0"
+django-compressor = "^4.4"
+rcssmin = "1.1.1"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.7.0"
+flake8 = "^5.0.4"
+isort = "^5.12.0"
+pytest = "^7.1.3"
+pytest-django = "^4.5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+asyncio_mode = "auto"
+addopts = "-vv"
+DJANGO_SETTINGS_MODULE = "web.settings"
+
+[tool.isort]
+line_length = 200
+no_lines_before = "LOCALFOLDER"

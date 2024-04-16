@@ -1,0 +1,4 @@
+[submodule "povulo"]
+	path = povulo
+	url = git@git.voladi.com:a/povulo.git
+	branch = feature/vol-1522-make-non-standard-pages-appear-in-page-chooser

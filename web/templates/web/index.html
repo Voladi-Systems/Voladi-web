@@ -1,0 +1,509 @@
+{% extends 'web/base.html' %}
+
+{% load static layout %}
+
+{% block content %}
+
+<section class="bg-branding-two bg-opacity-20">
+  <div class="{% container_class HORIZONTAL_LAYOUT %}">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 py-4 md:p-0">
+      <div class="flex items-center md:py-4">
+        <div class="text-center lg:text-left lg:pr-44">
+          <h1 class="font-bold text-5xl mb-6">The website for your people</h1>
+          <p class="mb-6">
+            Offer your information and services online to your users on-the-go, with a fast, mobile-friendly website, while managing them powerfully with automation, insights, privacy, and security.
+          </p>
+          <a
+            href="javascript:void(0);"
+            class="inline-block bg-primary text-white text-center p-2 px-3 mb-6"
+            data-cta-modal="#contact-form"
+          >
+            Lets get started
+          </a>
+        </div>
+      </div>
+      <div>
+        <img src="{% static 'povulo/images/happy-young-colleagues-sitting-in-office-coworking-using-laptop.jpg' %}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-8 md:py-16">
+  <div class="{% container_class HORIZONTAL_LAYOUT %}">
+    <div class="text-center mb-6">
+      <h2>Trusted by</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
+      <div class="flex justify-center items-center pb-6 md:pb-0">
+        <img
+          src="{% static 'povulo/images/logo-mensa.png' %}"
+          class="h-16"
+          alt=""
+        >
+      </div>
+      <div class="flex justify-center items-center pb-6 md:pb-0">
+        <img
+          src="{% static 'povulo/images/logo-voladi.png' %}"
+          class="h-16"
+          alt=""
+        >
+      </div>
+      <div class="flex justify-center items-center pb-6 md:pb-0">
+        <img
+          src="{% static 'povulo/images/logo-navet.png' %}"
+          class="h-16"
+          alt=""
+        >
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-8 md:py-16 md:pb-32">
+  <div class="{% container_class HORIZONTAL_LAYOUT %}">
+    <div class="text-center mb-6">
+      <h2 class="mb-2">Testimonials</h2>
+      <p class="font-bold text-3xl">Our customers stories</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="relative flex flex-col justify-center md:items-center bg-primary md:text-center text-white p-4 sm:p-10 xl:p-20">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </div>
+        <div class="mt-4 md:mt-0 md:gap-y-2 flex md:flex-col md:justify-center md:absolute md:bottom-0 transform md:translate-y-24">
+          <img
+            src="{% static 'povulo/images/avatar-female.png' %}"
+            class="w-16 md:mx-auto"
+            alt=""
+          >
+          <div class="text-white ml-2 md:ml-0 flex flex-col justify-center md:block">
+            <p class="font-medium md:text-gray-800 md:pb-2">Alma Morrison</p>
+            <p class="md:text-gray-500">Editor</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative flex flex-col justify-center md:items-center bg-primary md:text-center text-white p-4 sm:p-10 xl:p-20">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </div>
+        <div class="mt-4 md:mt-0 md:gap-y-2 flex md:flex-col md:justify-center md:absolute md:bottom-0 transform md:translate-y-24">
+          <img
+            src="{% static 'povulo/images/avatar-male.png' %}"
+            class="w-16 md:mx-auto"
+            alt=""
+          >
+          <div class="text-white ml-2 md:ml-0 flex flex-col justify-center md:block">
+            <p class="font-medium md:text-gray-800 md:pb-2">John Snow</p>
+            <p class="md:text-gray-500">Editor</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative flex flex-col justify-center md:items-center bg-primary md:text-center text-white p-4 sm:p-10 xl:p-20">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </div>
+        <div class="mt-4 md:mt-0 md:gap-y-2 flex md:flex-col md:justify-center md:absolute md:bottom-0 transform md:translate-y-24">
+          <img
+            src="{% static 'povulo/images/avatar-female.png' %}"
+            class="w-16 md:mx-auto"
+            alt=""
+          >
+          <div class="text-white ml-2 md:ml-0 flex flex-col justify-center md:block">
+            <p class="font-medium md:text-gray-800 md:pb-2">Julia Smith</p>
+            <p class="md:text-gray-500">Editor</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-8 md:py-16 md:pb-32">
+  <div class="text-center text-white mb-4 md:mb-0 py-12 bg-branding-two">
+    <h2 class="font-bold text-3xl">
+      Our features
+    </h2>
+  </div>
+  <div class="{% container_class HORIZONTAL_LAYOUT %}">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-24">
+      <div class="relative flex flex-col items-center gap-4 text-center py-4 md:py-20">
+        <img
+          src="{% static 'povulo/images/feature-icon-cms.png' %}"
+          class="md:h-20 md:w-auto w-16"
+          alt=""
+        >
+        <p class="font-bold text-xl">
+          Content Management
+        </p>
+        <div class="text-left">
+          <p class="mb-2">
+            Your content needs to be fresh - You don't want to contact the developer every time you want to update a word or picture on your website. No coding required.
+          </p>
+          <p class="mb-2">
+            It is fast, elegant, and designed to give everyone on your team the tools they need to manage content at scale.
+          </p>
+          <p class="mb-2">
+            Members-only pages are only accessible to logged-in users.
+          </p>
+        </div>
+      </div>
+      <div class="relative flex flex-col items-center gap-4 text-center py-4 md:py-20">
+        <img
+          src="{% static 'povulo/images/feature-icon-multilingual.png' %}"
+          class="md:h-20 md:w-auto w-16"
+          alt=""
+        >
+        <p class="font-bold text-xl">
+          Multilingual
+        </p>
+        <div class="text-left">
+          <p class="mb-2">
+            Your audience speaks multiple languages - and now you do too, even if you personally don't.
+          </p>
+          <p class="mb-2">
+            Integrated translations help you replicate your content in every language you need.
+          </p>
+          <p class="mb-2">
+            Your visitor automatically sees your site in their own language, and they can easily switch it whenever they want.
+          </p>
+        </div>
+      </div>
+      <div class="relative flex flex-col items-center gap-4 text-center py-4 md:py-20">
+        <img
+          src="{% static 'povulo/images/feature-icon-service.png' %}"
+          class="md:h-20 md:w-auto w-16"
+          alt=""
+        >
+        <p class="font-bold text-xl">
+          Powerful Service
+        </p>
+        <div class="text-left">
+          <p class="mb-2">
+            Requests are easily handled automatically with our configurable chat bot, directing users to the right solution.
+          </p>
+          <p class="mb-2">
+            Customized forms collect information in a standardized way, with optional GPS, and optional destinations.
+          </p>
+          <p class="mb-2">
+            Add on additional services and destinations through our integrations and API.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-8 md:py-16 md:pb-32">
+  <div class="{% container_class HORIZONTAL_LAYOUT %}">
+    <div class="mb-12">
+      <h2 class="font-bold text-4xl">
+        How does it work?
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 pb-16">
+      <div class="md:pr-24">
+        <h3 class="font-bold text-xl mb-10">
+          It's easy to get started
+        </h3>
+        <ul class="list-disc pl-4">
+          <li>
+            If you have an existing website, we can migrate all your legacy content, features, and structures
+          </li>
+          <li>
+            Enter your previous website or domain here: [text input]
+          </li>
+          <li>
+            Contact email address: [email input]
+          </li>
+          <li>
+            Within 1 business day we will contact you to deliver your new site
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img src="{% static 'povulo/images/how--easy-get-started.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 pb-16">
+      <div class="md:pr-24 md:order-1">
+        <h3 class="font-bold text-xl mb-10">
+          Mobile Friendly
+        </h3>
+        <ul class="list-disc pl-4">
+          <li>
+            Most of your users are on the go - so your website needs to be fast and easy to use on smart phones.
+          </li>
+          <li>
+            Responsive design ensures your site looks great on mobile devices as well as larger screens.
+          </li>
+          <li>
+            Fully responsive designs that look and work well on mobile devices (60% of traffic today)
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img src="{% static 'povulo/images/how--mobile-friendly.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 pb-16">
+      <div class="md:pr-24">
+        <h3 class="font-bold text-xl mb-10">
+          Content
+        </h3>
+        <ul class="list-disc pl-4">
+          <li>
+            You can update your own content, text, photos, videos, and files, with the included Content Management System (CMS)
+          </li>
+          <li>
+            Your text content can be automatically translated into the languages you choose by the best machine translation (DeepL), and optionally reviewed by a professional translator (separate cost), or adjusted by you
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img src="{% static 'povulo/images/how--content.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 pb-16">
+      <div class="md:pr-24 md:order-1">
+        <h3 class="font-bold text-xl mb-10">
+          Multilingual support
+        </h3>
+        <ul class="list-disc pl-4">
+          <li>
+            Automatic detection of your visitor’s browser language shows them your content in their language
+          </li>
+          <li>
+            The visitor can easily change the default language
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img src="{% static 'povulo/images/how--multilingual.png' %}" alt="">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 pb-16">
+      <div class="md:pr-24">
+        <h3 class="font-bold text-xl mb-10">
+          Service
+        </h3>
+        <ul class="list-disc pl-4">
+          <li>
+            Requests for help and service are easily handled automatically with our configurable chat bot
+          </li>
+          <li>
+            Configurable contact forms, with optional GPS, and optional destinations
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img src="{% static 'povulo/images/how--service.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 pb-16">
+      <div class="md:pr-24 md:order-1">
+        <h3 class="font-bold text-xl mb-10">
+          E-Commerce
+        </h3>
+        <ul class="list-disc pl-4">
+          <li>
+            Sell products with our optional E-Commerce section, which handles inventory, sales pages, pricing pages, payment, notifications, and reporting
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img src="{% static 'povulo/images/how--ecommerce.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 pb-16">
+      <div class="md:pr-24">
+        <h3 class="font-bold text-xl mb-10">
+          Membership
+        </h3>
+        <ul class="list-disc pl-4">
+          <li>
+            Membership programs are supported by users sections, which are only accessible for logged-in users with a user account
+          </li>
+          <li>
+            Customer dashboard, for managing their account, orders, billing and invoices
+          </li>
+        </ul>
+      </div>
+      <div class="md:pr-32">
+        <img src="{% static 'povulo/images/how--membership.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-24 pb-16">
+      <div class="md:pr-24 md:order-1">
+        <h3 class="font-bold text-xl mb-10">
+          Integrations
+        </h3>
+        <ul class="list-disc pl-4">
+          <li>
+            PagiTron - document management, data extraction, and workflows
+          </li>
+          <li>
+            Helpdesk - ticketing system with agent support
+          </li>
+          <li>
+            Basics - online database for your custom data needs
+          </li>
+          <li>
+            LiveStage - online streaming to an unlimited audience
+          </li>
+          <li>
+            Bangetti - ePaper for online publications and newsletters
+          </li>
+          <li>
+            BabelBoss - (included) integrated high-quality translations, done by machine, human, or both (separate cost).
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img src="{% static 'povulo/images/how--integrations.png' %}" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-8 md:py-16 md:pb-0 pb-0">
+  <div class="text-center py-12 bg-branding-two bg-opacity-20">
+    <h2 class="font-bold text-3xl mb-4">
+      Lets get your project started
+    </h2>
+    <a
+      href="javascript:void(0);"
+      class="inline-block bg-primary text-white text-center p-2 px-3"
+      data-cta-modal="#contact-form"
+    >
+      Lets get started
+    </a>
+  </div>
+</section>
+<section class="py-8 md:py-16 text-white bg-branding-three">
+  <div class="{% container_class HORIZONTAL_LAYOUT %}">
+    <div class="grid grid-cols-1 md:grid-cols-3 border-b border-gray-300 pb-12 mb-2">
+      <div class="px-4 pb-16 md:pb-0 md:px-auto flex md:block justify-center">
+        <img
+          src="{% static 'povulo/images/logo-povulo-full-for-dark.svg' %}"
+          class="w-40"
+          alt=""
+        >
+      </div>
+      <div class="mb-12 md:mb-0">
+        <div class="flex flex-col gap-y-4">
+          <p class="mb-4 font-bold">Povulo</p>
+          <a href="javascript:void(0);">
+            Testimonials
+          </a>
+          <a href="javascript:void(0);">
+            Features
+          </a>
+          <a href="javascript:void(0);">
+            How does it work?
+          </a>
+          <a href="javascript:void(0);">
+            FAQ
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="flex flex-col gap-y-4">
+          <p class="mb-6 font-bold">Contact us</p>
+          <div class="flex">
+            <div class="w-6 mr-2">
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5M12,2A7,7 0 0,1 19,9C19,14.25 12,22 12,22C12,22 5,14.25 5,9A7,7 0 0,1 12,2M12,4A5,5 0 0,0 7,9C7,10 7,12 12,18.71C17,12 17,10 17,9A5,5 0 0,0 12,4Z" />
+              </svg>
+            </div>
+            <div>
+              Seefeldstrasse 69, 8008 Zurich, Switzerland
+            </div>
+          </div>
+          <div class="flex">
+            <div class="w-6 mr-2">
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6M20 6L12 11L4 6H20M20 18H4V8L12 13L20 8V18Z" />
+            </svg>
+            </div>
+            <div>
+              info@voladi.com
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      © 2023 Voladi Sys GmbH. All rights reserved.
+    </div>
+  </div>
+</section>
+{% include 'web/_contact_form.html' %}
+{% endblock %}
+
+{% block footer-js-dependencies %}
+<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+{% endblock %}
+
+{% block footer-js %}
+<script>
+  (function() {
+    const api = axios.create({
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': '{{ csrf_token }}',
+      },
+    });
+
+    function openModal(el) {
+      el.classList.remove('pointer-events-none', 'opacity-0');
+    }
+
+    function closeModal(el) {
+      el.classList.add('pointer-events-none', 'opacity-0');
+    }
+
+    document.body.addEventListener('click', (e) => {
+      const { target } = e;
+      const modalRef = target.closest('[data-modal-ref]');
+      if (target.closest('[data-modal-content]')) {
+        return;
+      } else if (modalRef) {
+        closeModal(modalRef);
+      }
+    });
+
+    const ctas = document.querySelectorAll('[data-cta-modal]');
+    ctas.forEach((el) => {
+      const targetAttr = el.getAttribute('data-cta-modal');
+      const targetEl = document.querySelector(targetAttr);
+      if (targetEl) {
+        el.addEventListener('click', (e) => {
+          openModal(targetEl);
+        });
+        const closeButton = targetEl.querySelector('.close');
+        closeButton.addEventListener('click', (e) => {
+          closeModal(targetEl);
+        });
+      }
+    });
+
+    const forms = document.querySelectorAll('form');
+    forms.forEach((form) => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const modalRef = e.target.closest('[data-modal-ref]');
+        const url = e.target.getAttribute('data-url');
+        if (url) {
+          const formData = new FormData(e.target);
+          const data = Object.fromEntries(formData.entries());
+          const loader = form.querySelector('[data-button-loader]');
+          loader.classList.remove('hidden');
+          api.post(url, data).then(({ data }) => {
+            closeModal(modalRef);
+          }).catch((err) => {
+            console.error(err);
+          }).finally(() => {
+            loader.classList.add('hidden');
+          });
+        }
+      });
+    });
+  })();
+</script>
+{% endblock %}

@@ -1,0 +1,106 @@
+<div
+  id="contact-form"
+  class="relative z-10 opacity-0 pointer-events-none duration-200"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  data-modal-ref="#contact-form"
+>
+  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" data-modal-overlay></div>
+  <div class="fixed inset-0 z-10 overflow-y-auto">
+    <div class="flex items-center justify-center min-h-full">
+      <div class="w-full max-w-sm sm:p-0">
+        <div class="bg-white p-4 relative shadow-lg" data-modal-content>
+          <div class="font-bold text-lg mb-4">
+            Get your free demo
+          </div>
+          <button class="absolute top-2 right-2 close w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close</title><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+          </button>
+          <form class="text-sm" data-url="{% url 'index' %}">
+            <div class="mb-6">
+              <div class="mb-4">
+                <label
+                  for="{{ form.email.id_for_label }}"
+                  class="block mb-1 text-sm font-medium text-gray-900"
+                >
+                  Contact email address
+                </label>
+                <input
+                  type="email"
+                  id="{{ form.email.id_for_label }}"
+                  name="{{ form.email.name }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full p-2"
+                  placeholder="johndoe@website.com"
+                  required
+                >
+              </div>
+              <div class="mb-4">
+                <label
+                  for="{{ form.website.id_for_label }}"
+                  class="block mb-1 text-sm font-medium text-gray-900"
+                >
+                  Current domain or website (optional)
+                </label>
+                <input
+                  type="text"
+                  id="{{ form.website.id_for_label }}"
+                  name="{{ form.website.name }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full p-2"
+                  placeholder="website.com"
+                >
+              </div>
+              <div class="mb-4">
+                <label
+                  for="{{ form.notes.id_for_label }}"
+                  class="block mb-1 text-sm font-medium text-gray-900"
+                >
+                  Notes (optional)
+                </label>
+                <textarea
+                  id="{{ form.notes.id_for_label }}"
+                  name="{{ form.notes.name }}"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary focus:border-primary block w-full p-2"
+                ></textarea>
+              </div>
+            </div>
+            {% csrf_token %}
+            <div class="flex justify-end">
+              <button
+                type="submit"
+                class="text-white bg-primary hover:bg-primary focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center relative"
+              >
+                <span>Submit</span>
+                <div
+                  class="hidden absolute inset-0 bg-gray-400 flex items-center justify-center"
+                  data-button-loader
+                >
+                  <svg
+                    class="text-white animate-spin h-5 w-5"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    />
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    />
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

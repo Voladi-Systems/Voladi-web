@@ -1,0 +1,101 @@
+user www-data www-data;
+worker_processes auto;
+pid /run/nginx/nginx.pid;
+daemon off;
+events {
+    worker_connections 65536;
+    # Efficient connection processing method used on Linux 2.6+.
+    use epoll;
+    # multi_accept on;
+}
+
+http {
+
+    ##
+    # Basic Settings
+    ##
+
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    client_max_body_size 100m;
+
+    # allow the server to close connection on non responding client, this will free up memory
+    reset_timedout_connection on;
+
+    # Server will close connection after this time
+    keepalive_timeout 120s;
+
+    keepalive_requests 100000;
+
+    # If the client does not receive anything within this time, the connection is closed.
+    send_timeout 120s;
+
+    types_hash_max_size 2048;
+    # server_tokens off;
+
+    # server_names_hash_bucket_size 64;
+    # server_name_in_redirect off;
+
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    ##
+    # SSL Settings
+    ##
+
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+    ssl_prefer_server_ciphers on;
+
+    ##
+    # Logging Settings
+    ##
+
+    access_log /dev/stdout;
+    error_log /dev/stderr;
+
+    ##
+    # Gzip Settings
+    ##
+
+    gzip on;
+    gzip_disable "msie6";
+
+    # gzip_vary on;
+    # gzip_proxied any;
+    # gzip_comp_level 6;
+    # gzip_buffers 16 8k;
+    # gzip_http_version 1.1;
+    gzip_types image/png text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+    ##
+    # Virtual Host Configs
+    ##
+
+    server {
+        location /media {
+            alias /app/media;
+            expires {{ getenv "STATIC_EXPIRES" }};
+            add_header Pragma public;
+            add_header Cache-Control "public";
+            if ($request_filename ~* ^.*?\.(eot)|(ttf)|(woff)|(woff2)$){
+                add_header Access-Control-Allow-Origin *;
+            }
+        }
+        location /static {
+            alias /app/staticfiles;
+            expires {{ getenv "STATIC_EXPIRES" }};
+            add_header Pragma public;
+            add_header Cache-Control "public";
+            if ($request_filename ~* ^.*?\.(eot)|(ttf)|(woff)|(woff2)$){
+                add_header Access-Control-Allow-Origin *;
+            }
+        }
+        location / {
+            uwsgi_read_timeout 120s;
+            uwsgi_send_timeout 120s;
+            uwsgi_pass unix:/run/uwsgi/web.sock;
+            include uwsgi_params;
+        }
+    }
+}

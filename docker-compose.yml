@@ -1,0 +1,98 @@
+version: '3.9'
+services:
+  web:
+    image: eu.gcr.io/voladi/voladi:${env}
+    build: .
+    container_name: voladi-web-${env}
+    depends_on:
+      database:
+        condition: service_started
+    expose:
+      - 80
+    networks:
+      default:
+        aliases:
+          - voladi.internal
+      proxy:
+        aliases:
+          - voladi.internal
+    logging:
+      driver: gcplogs
+      options:
+        env: environment=${env}
+    restart: always
+    labels:
+      com.voladi.project: voladi-web
+      com.voladi.type: django
+      com.voladi.environment: ${env}
+    volumes:
+      - ./gcp-voladi-dev20210601-e5a3f5170f66.json:/app/gcp-voladi-dev20210601-e5a3f5170f66.json
+    environment:
+      ENVIRONMENT: ${env}
+      DB_HOST: database
+      DB_USER: voladi
+      DB_NAME: voladi
+      DB_PORT: 5432
+      STATIC_EXPIRES: 1y
+      RECAPTCHA_SITE_KEY: 6LeoMCcnAAAAAFxHaWiwnEVutEeX_R32MtiptEze
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      EMAIL_HOST: smtp.eu.mailgun.org
+      EMAIL_HOST_USER: dev@dev.mg.voladi.com
+      EMAIL_PORT: 587
+      EMAIL_USE_TLS: 'true'
+      MAILGUN_BASE_URL: https://api.eu.mailgun.net/v3/dev.mg.voladi.com/
+      DEFAULT_FROM_EMAIL: 'Admin <no-reply@voladi.com>'
+      CONTACT_FORM_EMAIL: info@voladi.com
+      GOOGLE_APPLICATION_CREDENTIALS: /app/gcp-voladi-dev20210601-e5a3f5170f66.json
+      PROJECT_NAME: voladi
+    command: /bin/bash -c "usermod -u $USER_ID www-data && groupmod -g $GROUP_ID www-data && /docker-entrypoint.sh start"
+
+  database:
+    image: postgres:15.1
+    container_name: voladi-database-${env}
+    restart: always
+    networks:
+      - default
+    expose:
+      - 5432
+    healthcheck:
+      interval: 10s
+      retries: 60
+      start_period: 2s
+      test: pg_isready -q -d $${POSTGRES_DB} -U $${POSTGRES_USER} || exit 1
+      timeout: 2s
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    labels:
+      com.voladi.project: voladi-web
+      com.voladi.type: database
+      com.voladi.environment: ${env}
+    environment:
+      POSTGRES_DB: voladi
+      POSTGRES_USER: voladi
+
+  redis:
+    image: redis:7.0.10
+    container_name: voladi-redis-${env}
+    restart: always
+    logging:
+      driver: gcplogs
+      options:
+        env: environment=${env}
+    labels:
+      com.voladi.project: voladi-web
+      com.voladi.type: redis
+      com.voladi.environment: ${env}
+    expose:
+      - 6379
+
+volumes:
+  db_data:
+
+networks:
+  default:
+    name: voladi
+  proxy:
+    name: nginx_proxy
+    external: true

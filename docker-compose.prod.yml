@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  web:
+    volumes:
+      - ./staticfiles:/app/staticfiles
+      - ./media:/app/media
+    environment:
+      VIRTUAL_HOST: voladi.voladi.tech,voladi.com
+      LETSENCRYPT_HOST: voladi.voladi.tech,voladi.com
+      LETSENCRYPT_EMAIL: it@voladi.com
+      STATIC_EXPIRES: 7d
+      EMAIL_HOST_USER: dev@dev.mg.voladi.com
+      CRONJOBS_ENABLED: 'true'
