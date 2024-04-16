@@ -1,0 +1,33 @@
+:root {
+  /* Wagtail branding, Panels, Headings, Buttons, Labels */
+  --w-color-primary: #12291B;
+  /* Accent for elements used in conjunction with primary colour in sidebar */
+  --w-color-primary-200: #21442f;
+  /* Primary buttons, action links */
+  --w-color-secondary: #77873D ;
+  /* Hover states for two-tone buttons */
+  --w-color-secondary-600:	#12291B ;
+  /* Two-tone buttons, hover states */
+  --w-color-secondary-400:	#B5C96B ;
+  /* UI element highlights over dark backgrounds */
+  --w-color-secondary-100:	#B5C96B  ;
+  /* UI element highlights over dark text */
+  --w-color-secondary-75:	#12291B;
+  /* Button backgrounds, highlighted fields background */
+  --w-color-secondary-50:	#12291B   ;
+  /* Background and icons for information messages */
+  --w-color-info-100: #77873D;
+  /* Background only, for information messages */
+  --w-color-info-50: #E2F5FC;
+  /* Positive states */
+  --w-color-positive-100:	#1B8666 ;
+  /* Background only, for positive states */
+  --w-color-positive-50: #E0FBF4 ;
+}
+
+.footer__container {
+  background: #B5C96B;
+}
+/* div[data-contentpath*="template"] {
+  display: none;
+} */

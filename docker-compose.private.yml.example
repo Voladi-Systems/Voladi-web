@@ -1,0 +1,5 @@
+version: '3.9'
+services:
+  web:
+    environment:
+      SOME_ENV_VAR_TO_OVERRIDE: 1

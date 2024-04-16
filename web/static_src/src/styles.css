@@ -1,0 +1,245 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@layer utilities {
+  .items-center-unset {
+    align-items: inherit;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 14px;
+}
+
+div, section, a, span, button, li, ::after, ::before {
+  transition: all 0.15s ease;
+}
+
+a, button {
+  border-color: unset;
+}
+
+
+#menu-bar{
+  @apply hidden lg:block;
+}
+
+#menu-bar.menu-active {
+  @apply block;
+}
+
+
+#menu-bar {
+  .level-1 {
+    > ul {
+      > li a {
+        @apply lg:py-6;
+      }
+    }
+  }
+}
+
+#menu-toggle.menu-button-active::after, #menu-toggle.menu-button-active::before {
+  @apply rotate-0 origin-right;
+}
+
+#menu-toggle.menu-button-active::after {
+  @apply rotate-45;
+}
+
+#menu-toggle.menu-button-active::before {
+  @apply rotate-[-45deg];
+}
+
+#menu-toggle span {
+  @apply w-8;
+}
+
+#menu-toggle.menu-button-active span {
+  @apply w-0;
+}
+
+.boxShadow {
+  @apply border-r-0 lg:border-r-0;
+}
+
+.slick-dots li {
+  @apply w-auto h-auto;
+}
+
+.slick-dots li button:before {
+  @apply text-[0px];
+}
+
+.slick-dots li button {
+  @apply border border-solid border-primary h-4 lg:h-[18px] w-4 lg:w-[18px] rounded-full opacity-100;
+  transition: all 0.5s ease;
+}
+
+.slick-dots li.slick-active button {
+  @apply bg-primary w-8 lg:w-12;
+}
+
+.slick-track {
+  @apply flex;
+}
+
+.slick-arrow {
+  @apply w-8 h-8 -top-8 cursor-pointer absolute text-primary hover:text-primary-dark;
+}
+
+.slick-arrow.slick-disabled {
+  @apply text-gray-300;
+}
+
+.slick-arrow.slider-prev {
+  @apply right-8;
+}
+
+.slick-arrow.slider-next {
+  @apply right-0;
+}
+
+.slick-arrow svg {
+  @apply w-8 h-8;
+}
+
+.main-content ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.main-content ol {
+  display: block;
+  list-style-type: decimal;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+h1 {
+  display: block;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+h2 {
+  display: block;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+h3 {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+h4 {
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+h5 {
+  display: block;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+h6 {
+  display: block;
+  margin-block-start: 2.33em;
+  margin-block-end: 2.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+figcaption p {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.full-bleed-gray-100 {
+  box-shadow: 0 0 0 100vmax var(--color-gray-100);
+  clip-path: inset(0-100vmax);
+}
+
+.full-bleed-white {
+  box-shadow: 0 0 0 100vmax var(--color-white);
+  clip-path: inset(0-100vmax);
+}
+
+.border-brighten {
+  position: relative;
+}
+
+.border-brighten:after {
+  content: '';
+  position: absolute;
+  filter: brightness(1.5);
+}
+
+h1 {
+  @apply text-6xl font-medium;
+}
+
+h2 {
+  @apply text-4xl lg:text-5xl font-normal;
+}
+
+h3 {
+  @apply text-3xl lg:text-4xl font-normal;
+}
+
+h4 {
+  @apply text-2xl lg:text-3xl font-normal;
+}
+
+h5 {
+  @apply text-xl lg:text-2xl font-normal;
+}
+
+h6 {
+  @apply text-base lg:text-xl font-normal;
+}
+
+p {
+  @apply text-xl font-normal;
+}
+
+b {
+  @apply font-bold;
+}

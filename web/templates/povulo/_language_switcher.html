@@ -1,0 +1,66 @@
+{% load i18n wagtailcore_tags language %}
+{% get_current_language as CURRENT_LANGUAGE_CODE %}
+
+<div class="relative text-left items-center justify-center p-2 md:px-3 language-switcher">
+  <div>
+    <button type="button"
+    class="btn flex bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 items-center"
+      aria-expanded="true" aria-haspopup="true">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-5">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+      </svg>
+      {% for locale in LANGUAGES %}
+        {% get_language_info for locale.language_code as lang %}
+        {% if lang.code == CURRENT_LANGUAGE_CODE %}
+        <a
+          href="javascript:void(0);"
+          rel="alternate"
+          hreflang="{{ language_code }}"
+          class="mx-1"
+        >
+          {{ lang.name_local|title }}
+        </a>
+        {% endif %}
+      {% endfor %}
+      <div class="chev-icon w-5">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="duration-150 transform"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+      </div>
+    </button>
+  </div>
+  <div
+    class="absolute right-0 z-10 mt-2 md: w-full lg: w-22 origin-top-right rounded-none bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dropdown hidden"
+    role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+    <div class="py-1" role="none">
+      {% for locale in LANGUAGES %}
+        {% get_language_info for locale.language_code as lang %}
+        <div class="flex items-center px-4 py-2">
+          <a
+            href="{{ page|get_redirect_url:lang.code }}"
+            class="flex flex-grow text-sm{% if lang.code == CURRENT_LANGUAGE_CODE %} text-black group{% else %} text-gray-700{% endif %}"
+            role="menuitem"
+            tabindex="-1"
+          >
+            {{ lang.name_local|title }}
+          </a>
+          {% if lang.code == CURRENT_LANGUAGE_CODE %}
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

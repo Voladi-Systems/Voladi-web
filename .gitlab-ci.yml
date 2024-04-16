@@ -1,0 +1,78 @@
+image: python:3.10-alpine
+
+default:
+  before_script:
+    - git config --global http.sslVerify "false"
+    - git submodule init
+    - git submodule set-url povulo ../povulo.git
+    - git submodule update
+
+stages:
+  - build
+  - push
+  - deploy
+
+build:
+  stage: build
+  only:
+    - master
+  script:
+    - if [ "$CI_COMMIT_REF_SLUG" == "master" ]; then ENV="prod"; else ENV="$CI_COMMIT_REF_SLUG"; fi
+    - |
+      cat > build.env << EOF
+      ENV=$ENV
+      CI_COMMIT_SHORT_SHA=$CI_COMMIT_SHORT_SHA
+      EOF
+    - export $(cat build.env | xargs)
+    - make build env=$ENV
+  artifacts:
+    when: always
+    reports:
+      dotenv: build.env
+
+push:
+  stage: push
+  only:
+    - master
+  script:
+    - GCR_AUTH_TOKEN=$(gcloud auth print-access-token)
+    - echo "GCR_AUTH_TOKEN=$GCR_AUTH_TOKEN" >> push.env
+    - echo "ENV=$ENV" >> push.env
+    - echo $GCR_AUTH_TOKEN | docker login -u oauth2accesstoken --password-stdin eu.gcr.io
+    - make push env=$ENV
+  dependencies:
+    - build
+  artifacts:
+    when: always
+    reports:
+      dotenv: push.env
+
+deploy:
+  image: registry.voladi.com/a/deployments:fabric
+  stage: deploy
+  environment:
+    name: $CI_COMMIT_REF_NAME
+  before_script:
+    - eval $(ssh-agent -s)
+    - ash -c 'ssh-add <(echo "$SSH_PRIVATE_KEY")'
+    - ssh-add -l
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\tConnectTimeout 10\n\n" > ~/.ssh/config
+  only:
+    - master
+  tags:
+    - docker
+  script:
+    - export VOLADI_ENV=$ENV
+    - export VOLADI_GCR_AUTH_TOKEN=$GCR_AUTH_TOKEN
+    - export VOLADI_HOST=deploy.voladi.tech
+    - export VOLADI_USER=deploy
+    - export VOLADI_SHOULD_RUN=1
+    - export VOLADI_CHECK_AFTER_SECONDS=20
+    - export VOLADI_EXPECTED_SERVICES=3
+    - export VOLADI_MAKE_BACKUP=1
+    - export VOLADI_GCP_CREDENTIALS_NAME=gcp-voladi-dev20210601-e5a3f5170f66.json
+    - dump-env -p 'VOLADI_' -p 'CI_' > .env
+    - fab deploy
+  dependencies:
+    - push

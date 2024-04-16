@@ -1,0 +1,14 @@
+{% extends './base.html' %}
+
+{% load layout templates_extra wagtailcore_tags %}
+
+{% block content %}
+  {% for block in page.body %}
+    {% with value=block.value template=block.value.template|get_template_path:block.block_type %}
+      {% include template with variables=block|block_attrs %}
+    {% endwith %}
+  {% endfor %}
+  {% for form in forms %}
+  {% include './forms/vertical_v1.html' with form=form %}
+  {% endfor %}
+{% endblock %}

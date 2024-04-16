@@ -1,0 +1,125 @@
+{% load static menu_tags menus layout i18n language templates_extra wagtailcore_tags %}
+{% get_current_language as CURRENT_LANGUAGE_CODE %}
+
+<nav class="bg-white shadow relative sticky top-0 z-50" id="main-navbar">
+  <div class="{% container_class HORIZONTAL_LAYOUT %}">
+    <div class="relative flex justify-between">
+      <div class="flex flex-shrink-0 items-center py-4">
+        {% if settings.povulo.branding.logo_secondary_light %}
+        <a href="{% if page.get_site.root_page.localized %}{% pageurl page.get_site.root_page.localized %}{% else %}/{% endif %}" class="-m-1.5 p-1.5">
+          <img class="block h-8 w-auto lg:hidden" src="{{ settings.povulo.branding.logo_secondary_light.url }}" alt="logo">
+        </a>
+        <a href="{% if page.get_site.root_page.localized %}{% pageurl page.get_site.root_page.localized %}{% else %}/{% endif %}" class="-m-1.5 p-1.5">
+          <img class="hidden h-8 w-auto lg:block" src="{{ settings.povulo.branding.logo_light.url }}" alt="logo">
+        </a>
+        {% endif %}
+      </div>
+      <div class="flex items-center justify-center md:items-stretch md:justify-start">
+        <div class="hidden px-8 md:flex">
+        {% custom_menu True 'main-menu' CURRENT_LANGUAGE_CODE %}
+        </div>
+        <div class="flex items-center p-1.5">
+          <div class="hidden md:block">
+            {% include 'povulo/_language_switcher.html' %}
+          </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center md:hidden">
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-button"
+          type="button"
+          class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <div id="closed-icon">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </div>
+          <div id="open-icon" class="hidden">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div
+    class="md:hidden shadow transform bg-white border-t border-gray-300 absolute left-0 right-0 translate-x-[-100%] duration-150"
+    id="mobile-menu"
+  >
+    <div>
+      {% custom_menu True 'main-menu' CURRENT_LANGUAGE_CODE %}
+    </div>
+    <div class="py-2 px-1.5">
+      {% include 'povulo/_language_switcher.html' %}
+    </div>
+
+  </div>
+</nav>
+<script>
+  (function() {
+    document.addEventListener('click', (e) => {
+      const toggleDropdown = function (dropdownMenu) {
+        dropdownMenu.classList.toggle('hidden');
+      };
+      const toggleIconChange = (chevIcon) => {
+        const isOpen = chevIcon.classList.contains('rotate-180');
+        if (isOpen) {
+          chevIcon.classList.remove('rotate-180');
+        } else {
+          chevIcon.classList.add('rotate-180');
+        }
+      };
+      const {
+        target,
+      } = e;
+      const dropdownBtn = target.closest('.language-switcher button');
+      if (dropdownBtn) {
+        const langSwitcher = dropdownBtn.closest('.language-switcher');
+        const dropdownMenu = langSwitcher.querySelector('.dropdown');
+        const chevIcon = langSwitcher.querySelector('.chev-icon svg');
+        toggleIconChange(chevIcon);
+        toggleDropdown(dropdownMenu);
+      } else if (!dropdownBtn) {
+        const dropdownMenu = document.querySelector('.dropdown');
+        const dropdownMenuOpen = dropdownMenu.classList.contains('hidden');
+        const chevIcon = document.querySelector('.chev-icon svg');
+        if(!dropdownMenuOpen){
+          toggleIconChange(chevIcon);
+          toggleDropdown(dropdownMenu);
+        }
+      }
+    });
+  })();
+</script>
+
+<script>
+  (function() {
+    const button = document.querySelector('#mobile-button');
+    const closedIcon = document.querySelector('#closed-icon');
+    const openIcon = document.querySelector('#open-icon');
+    const mobileMenu = document.querySelector('#mobile-menu');
+    let open = false;
+    button.addEventListener('click', () => {
+      open = !open;
+      if (open) {
+        closedIcon.classList.add('hidden');
+        openIcon.classList.remove('hidden');
+        mobileMenu.classList.add('translate-x-0');
+        mobileMenu.classList.remove('translate-x-[-100%]');
+      } else {
+        closedIcon.classList.remove('hidden');
+        openIcon.classList.add('hidden');
+        mobileMenu.classList.add('translate-x-[-100%]');
+        mobileMenu.classList.remove('translate-x-0');
+      }
+    });
+  })();
+</script>

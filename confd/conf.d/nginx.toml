@@ -1,0 +1,4 @@
+[template]
+src = "nginx.conf.tmpl"
+dest = "/etc/nginx/nginx.conf"
+check_cmd = "nginx -t"
